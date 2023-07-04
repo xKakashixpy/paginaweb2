@@ -1,43 +1,12 @@
-.bg-custom {
-    background-color: #e56b7f;
+
+  .footer {
+    background-color: #333333;
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    margin-top: 50px;
 }
 
-.resaltado {
-    transform: scale(1.1);
-    border: 2px solid red;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+.footer p {
+    margin: 0;
 }
-
-.image-block {
-    display: flex;
-    gap: 40px;
-  }
-  
-  .image-block img {
-    width: auto;
-    max-height: 1600px; /
-    border: 2px solid #e56b7f;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s;
-  }
-  
-  .container {
-    display: flex;
-    justify-content: flex-end;
-  }
-  
-  .image-item {
-    width: 1600px;
-  }
-  
-  .image-item img {
-    width: 100%;
-    height: 1000px;
-  }
-  
-  .image-description {
-    padding: 10px;
-    background-color: #f2f2f2;
-  }
-  
-  

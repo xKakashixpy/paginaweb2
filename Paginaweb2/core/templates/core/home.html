@@ -32,16 +32,15 @@
                         <a class="nav-link" href="{% url 'tienda' %}">Tienda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="MisyVis.html">Vision y Mision</a>
+                        <a class="nav-link" href="{% url 'misionyvision' %}">Vision y Mision</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="Servicios.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Servicios
-                        </a>
-                        <ul class="dropdown-menu">                        
-                        <li><a class="dropdown-item" href="Contabilidad.html">Contabilidad</a></li>                        
-                        </ul>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'servicios' %}">Servicios</a>
                     </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'noticias' %}">Noticias</a>
+                    </li>
+                    </ul>
                     </ul>
                 </div>
             </div> <!-- cierre del container barra superior-->

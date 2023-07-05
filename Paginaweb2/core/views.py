@@ -16,3 +16,6 @@ def servicios(request):
 
 def noticias(request):
     return render(request, 'core/noticias.html')
+
+def carrito(request):
+    return render(request, 'core/carrito.html')

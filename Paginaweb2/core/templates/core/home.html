@@ -17,7 +17,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
                 <div class="container-fluid> 
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="{% url 'tienda' %}">
                     <img class="logo" src="{% static 'core/img/logo.png' %}" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,10 +26,10 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Utilidades.html">Utilidades</a>
+                        <a class="nav-link" href="{% url 'tienda' %}">Tienda</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="MisyVis.html">Vision y Mision</a>
@@ -145,7 +145,7 @@
         </div>
     </div>
 
-
+<!-- pie de pagina con antecedentes de la pagina-->
     <footer class="footer">
         <div class="container">
             <div class="row">

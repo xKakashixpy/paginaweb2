@@ -18,7 +18,7 @@
             <div class="container">
                 <div class="container-fluid> 
                 <a class="navbar-brand" href="index.html">
-                    <img class="logo" src="images/logo.png" alt="">
+                    <img class="logo" src="{% static 'core/img/logo.png' %}" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -75,30 +75,34 @@
         <!--Primera seccion de la pagina-->
     <main>
 
-            <section class="altura">
-                <div class="container">
-                    <div class="row"> <!--Fila 1-->
-                        <!--Elementos que iran en la seccion de la pantalla-->
-                        <div class="col-12 col-sm-4 text-center">
-                            <img  class="img-fluid" src="{% static 'core/img/servicios/banner1.png' %}" alt="Banner01">
-                            <h5>Asesorias Contables</h5>
-                            <p>Contamos con profesionales de alta calidad, capaces de resolver todos los problemas que se puedan presentar en tu empresa</p>                    
-                        </div>
-
-                        <div class="col-12 col-sm-4 text-center">
-                            <img  class="img-fluid" src="{% static 'core/img/servicios/banner2.png' %}" alt="Banner02">
-                            <h5>Asesorias Laboral</h5>
-                            <p>Nuestros profesioanles se encuentra actulizados y contantemente en capacitaciones para estar al dia con toda la legislacion alboral </p>                    
-                        </div>
-
-                        <div class="col-12 col-sm-4 text-center">
-                            <img  class="img-fluid" src="{% static 'core/img/servicios/banner3.png' %}" alt="Banner03">
-                            <h5>Los Mejores profesioanles</h5>
-                            <p>Todos nuestros colaboradores pasan por un exigente proceso de seleccion para garantizar que seran los mejores de cada area.</p>                    
-                        </div>
-                    </div>
+        <section class="altura">
+            <div class="container">
+              <div class="row">
+                <div class="col-12 col-sm-4 text-center">
+                  <img class="img-fluid highlight-image" src="{% static 'core/img/servicios/banner1.png' %}" alt="Banner01">
+                  <h5>Asesorias Contables</h5>
+                  <p>Contamos con profesionales de alta calidad, capaces de resolver todos los problemas que se puedan presentar en tu empresa</p>                    
                 </div>
-            </section>
+          
+                <div class="col-12 col-sm-4 text-center">
+                  <img class="img-fluid highlight-image" src="{% static 'core/img/servicios/banner2.png' %}" alt="Banner02">
+                  <h5>Asesorias Laboral</h5>
+                  <p>Nuestros profesionales se encuentran actualizados y constantemente en capacitaciones para estar al día con toda la legislación laboral</p>                    
+                </div>
+          
+                <div class=" col-12 col-sm-4">
+                  <div class="card">
+                    <img src="{% static 'core/img/servicios/banner3.png' %}" class="card-img-top" alt="Banner03">
+                    <div class="card-body">
+                      <h5 class="card-title">Los Mejores profesionales</h5>
+                      <p class="card-text">Todos nuestros colaboradores pasan por un exigente proceso de selección para garantizar que serán los mejores de cada área.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
     </main>
 
         <!-- Formulario de Contacto-->

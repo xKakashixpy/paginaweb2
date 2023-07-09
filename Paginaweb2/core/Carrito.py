@@ -1,5 +1,3 @@
-from decimal import Decimal
-
 class Carrito:
     def __init__(self, request):
         self.request = request
@@ -11,14 +9,16 @@ class Carrito:
 
     def agregar(self, producto):
         id = str(producto.id)
-        item = self.carrito.setdefault(id, {
-            "producto_id": producto.id,
-            "nombre": producto.nombre,
-            "total": producto.precio,
-            "cantidad": 0,
-        })
-        item["cantidad"] += 1
-        item["total"] += producto.precio
+        if id not in self.carrito.keys():
+            self.carrito[id] = {
+                "producto_id": producto.id,
+                "nombre": producto.nombre,
+                "total": int(producto.precio),
+                "cantidad": 1,
+            }
+        else:
+            self.carrito[id]["cantidad"] += 1
+            self.carrito[id]["total"] += int(producto.precio)
         self.guardar_carrito()
 
     def guardar_carrito(self):
@@ -28,23 +28,19 @@ class Carrito:
     def eliminar(self, producto):
         id = str(producto.id)
         if id in self.carrito:
-            self.carrito.pop(id)
+            del self.carrito[id]
             self.guardar_carrito()
 
     def restar(self, producto):
         id = str(producto.id)
-        if id in self.carrito:
-            item = self.carrito[id]
-            item["cantidad"] -= 1
-            item["total"] -= producto.precio
-            if item["cantidad"] <= 0:
+        if id in self.carrito.keys():
+            self.carrito[id]["cantidad"] -= 1
+            self.carrito[id]["total"] -= int(producto.precio)
+            if self.carrito[id]["cantidad"] <= 0:
                 self.eliminar(producto)
-            else:
-                self.guardar_carrito()
+            self.guardar_carrito()
 
     def limpiar(self):
         self.session['carrito'] = {}
         self.session.modified = True
-
-
 

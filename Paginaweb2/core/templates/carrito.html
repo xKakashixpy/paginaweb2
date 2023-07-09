@@ -18,8 +18,8 @@
                         <td>{{ value.precio }}</td>
                         <td>
                             {{ value.total }}
-                            <a href="{% url 'agregar_producto' value.producto_id %}" class="badge btn btn-dark badge-dark">+</a>
-                            <a href="{% url 'restar_producto' value.producto_id %}" class="badge btn btn-dark badge-dark">-</a>
+                            <a href="{% url 'add' value.producto_id %}" class="badge btn btn-dark badge-dark">+</a>
+                            <a href="{% url 'rest' value.producto_id %}" class="badge btn btn-dark badge-dark">-</a>
                         </td>
                     </tr>
                 {% endfor %}

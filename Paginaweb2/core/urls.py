@@ -7,6 +7,6 @@ urlpatterns=[
     path('misionyvision/',misionyvision,name="misionyvision"),
     path('servicios/',servicios,name="servicios"),
     path('noticias/',noticias, name="noticias"),
-    path('carrito/', carrito,name="carrito"),
+    path('carrito/', carrito,name="carrito"),   
 
 ]

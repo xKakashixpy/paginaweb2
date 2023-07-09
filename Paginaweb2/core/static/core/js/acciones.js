@@ -12,20 +12,39 @@ $(document).ready(function() {
 
 // acciones relacioandas al carrito de compras 
 
-  // Array para almacenar los artículos seleccionados
-  var carrito = [];
+// Obtener todos los botones de agregar al carrito
+const agregarCarritoButtons = document.querySelectorAll('.agregar-carrito');
 
-  // Función para agregar un artículo al carrito
-  function agregarAlCarrito(articulo) {
-    carrito.push(articulo);
-    console.log("Artículo agregado al carrito:", articulo);
-  }
+// Agregar evento de clic a cada botón
+agregarCarritoButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    // Obtener el ID del producto desde el atributo de datos
+    const productoId = button.dataset.producto;
 
-  // Evento click del botón "Agregar al carrito"
-  var botonesAgregar = document.querySelectorAll(".articulo button");
-  botonesAgregar.forEach(function (boton) {
-    boton.addEventListener("click", function (event) {
-      var articulo = event.target.parentElement;
-      agregarAlCarrito(articulo);
+    // Realizar una solicitud AJAX o enviar el ID del producto al servidor para agregarlo al carrito
+    // Puedes usar fetch() u otra biblioteca de AJAX como Axios
+
+    // Ejemplo utilizando fetch():
+    fetch('/agregar-al-carrito/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': '{{ csrf_token }}', // Obtener el token de seguridad de Django
+      },
+      body: JSON.stringify({ productoId }),
+    })
+    .then(response => {
+      // Manejar la respuesta del servidor
+      if (response.ok) {
+        // Producto agregado correctamente al carrito
+        console.log('Producto agregado al carrito');
+      } else {
+        // Error al agregar el producto al carrito
+        console.error('Error al agregar el producto al carrito');
+      }
+    })
+    .catch(error => {
+      console.error('Error en la solicitud AJAX:', error);
     });
   });
+});

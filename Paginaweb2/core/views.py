@@ -19,3 +19,4 @@ def noticias(request):
 
 def carrito(request):
     return render(request, 'core/carrito.html')
+

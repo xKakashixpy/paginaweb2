@@ -14,9 +14,11 @@ class Producto(models.Model):
     precio = models.DecimalField(max_digits=8, decimal_places=2)
     descripcion = models.TextField()
     categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True)
+    imagen = models.ImageField(upload_to='core/img/tienda/', null=True, blank=True)
+
 
     def __str__(self):
-        return f'{self.nombre} ->{self.precio}'
+        return f'{self.nombre} -> {self.precio}'
     
 class Cliente(models.Model):
     rut = models.CharField(max_length=20)
@@ -35,4 +37,7 @@ class Contacto(models.Model):
     mensaje = models.CharField(max_length=200)
 
     def __str__(self):
-        return f'{self.nombre} - {self.correo}'    
+        return f'{self.nombre} - {self.correo}' 
+
+
+    

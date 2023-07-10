@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from core.models import Producto, Categoria
 from core.Carrito import Carrito
 
-
 # Create your views here.
 
 def home(request):
@@ -99,4 +98,38 @@ def eliminarproducto(request, codigo):
 
     return redirect('producto_crud')
 
-    
+## CRUD  CATEGORIA    
+
+
+def categoria_crud(request):
+    categoria = Categoria.objects.all()
+    categorias = Categoria.objects.all()
+    return render(request, 'core/CatCrud.html', {"categorias": categorias, "categorias": categorias})
+
+def registrarcategoria(request):
+    nombre = request.POST['txtNombre']   
+
+    categoria = Categoria.objects.create(
+        nombre=nombre,  
+    )
+    return redirect('categoria_crud')
+
+def editarcategoria(request, nombre):
+    categoria = Categoria.objects.get(nombre=nombre)      
+    return render(request, "core/CatEdit.html", { "categoria": categoria})
+
+def editarcategoria2(request, nombre):
+    nuevo_nombre = request.POST['txtNombre']
+    categoria = Categoria.objects.get(nombre=nombre)
+    categoria.nombre = nuevo_nombre
+    categoria.save()
+    return redirect('categoria_crud')
+
+
+
+
+def eliminarcategoria(request, nombre):
+    categoria = Categoria.objects.get(nombre=nombre)
+    categoria.delete()
+
+    return redirect('categoria_crud')

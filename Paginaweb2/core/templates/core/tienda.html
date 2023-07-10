@@ -66,6 +66,7 @@
                                             <h5 class="card-title">{{ producto.nombre }}</h5>
                                             <p class="card-text">{{ producto.descripcion }}</p>
                                             <p class="card-text">{{ producto.precio|intcomma }}</p>
+                                            <img src="{% static 'core/img/tienda/' %}{{ producto.imagen }}" alt="Imagen del producto">
                                             <a href="{% url 'add' producto.id %}" class="btn btn-primary">Comprar</a>
                                         </div>
                                     </div>

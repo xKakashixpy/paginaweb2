@@ -47,14 +47,13 @@ def noticias(request):
 
 def carrito(request):
     return render(request, 'core/carrito.html')
-## CRUD 
+
+
+## CRUD  PRODUCTO
 def producto_crud(request):
     productos = Producto.objects.all()
     categorias = Categoria.objects.all()
     return render(request, 'core/ProdCrud.html', {"productos": productos, "categorias": categorias})
-
-from django.shortcuts import redirect
-from .models import Producto, Categoria
 
 def registrarproducto(request):
     codigo = request.POST['txtCodigo']
@@ -62,14 +61,12 @@ def registrarproducto(request):
     precio = request.POST['numPrecio']
     descripcion = request.POST['txtDesc']
     categoria = request.POST['txtCategoria'] 
-
   
     categoria = Categoria.objects.get(nombre=categoria)
 
     producto = Producto.objects.create(
         codigo=codigo, nombre=nombre, precio=precio, descripcion=descripcion, categoria=categoria
     )
-
     return redirect('producto_crud')
 
 def eliminarproducto(request, codigo):

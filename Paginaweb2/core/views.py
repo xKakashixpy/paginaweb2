@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from core.models import Producto
+from core.models import Producto, Categoria
 from core.Carrito import Carrito
 
 
@@ -49,5 +49,27 @@ def carrito(request):
     return render(request, 'core/carrito.html')
 ## CRUD 
 def producto_crud(request):
-    producto = Producto.objects.all()
-    return render(request,'core/ProdCrud.html',{"productos": producto})
+    productos = Producto.objects.all()
+    categorias = Categoria.objects.all()
+    return render(request, 'core/ProdCrud.html', {"productos": productos, "categorias": categorias})
+
+from django.shortcuts import redirect
+from .models import Producto, Categoria
+
+def registrarproducto(request):
+    codigo = request.POST['txtCodigo']
+    nombre = request.POST['txtNombre']
+    precio = request.POST['numPrecio']
+    descripcion = request.POST['txtDesc']
+    categoria = request.POST['txtCategoria'] 
+
+  
+    categoria = Categoria.objects.get(nombre=categoria)
+
+    producto = Producto.objects.create(
+        codigo=codigo, nombre=nombre, precio=precio, descripcion=descripcion, categoria=categoria
+    )
+
+    return redirect('producto_crud')
+
+    

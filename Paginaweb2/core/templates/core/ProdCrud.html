@@ -55,7 +55,7 @@
                         <td>{{ p.nombre }}</td>
                         <td>{{ p.precio|intcomma }}</td>                     
                         <td>{{ p.categoria }}</td> 
-                        <td><a href="edicionproducto/{{p.codigo}}" class="btn btn-info">Editar</a> </td>
+                        <td><a href="{% url 'editarproducto' p.codigo %}" class="btn btn-info">Editar</a> </td>
                         <td><a href="{% url 'eliminarproducto' p.codigo %}" class="btn btn-dark">Eliminar</a></td>
 
                     </tr>                   

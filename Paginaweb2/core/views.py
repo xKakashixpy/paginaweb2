@@ -11,7 +11,7 @@ def home(request):
 def tienda(request):
     productos = Producto.objects.all()
     return render(request, 'core/tienda.html', {'productos': productos})
-
+## Variables del carrito de compras
 def agregar_producto(request, producto_id):
     carrito = Carrito(request)
     producto = Producto.objects.get(id=producto_id)
@@ -34,7 +34,7 @@ def limpiar_carrito(request):
     carrito = Carrito(request)
     carrito.limpiar()
     return redirect('tienda')
-
+##Cierre Varibles Carrito de Compras
 
 def misionyvision(request):
     return render(request, 'core/misionyvision.html')
@@ -47,4 +47,7 @@ def noticias(request):
 
 def carrito(request):
     return render(request, 'core/carrito.html')
-
+## CRUD 
+def producto_crud(request):
+    producto = Producto.objects.all()
+    return render(request,'core/ProdCrud.html',{"productos": producto})

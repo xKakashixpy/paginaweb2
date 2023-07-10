@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from.views import home, tienda, misionyvision, servicios, noticias,agregar_producto, eliminar_producto, restar_producto, limpiar_carrito
+from.views import home, tienda, misionyvision, servicios, noticias,agregar_producto, eliminar_producto, restar_producto, limpiar_carrito, producto_crud
 
 
 urlpatterns=[
@@ -13,5 +13,7 @@ urlpatterns=[
     path('eliminar/<int:producto_id>', eliminar_producto,name="del"),
     path('restar/<int:producto_id>', restar_producto,name="rest"), 
     path('limpiar/', limpiar_carrito,name="empt"), 
+    ## url crud
+    path('ProdCrud/',producto_crud,name="producto_crud",)
 
 ]

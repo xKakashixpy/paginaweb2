@@ -72,4 +72,10 @@ def registrarproducto(request):
 
     return redirect('producto_crud')
 
+def eliminarproducto(request, codigo):
+    producto = Producto.objects.get(codigo=codigo)
+    producto.delete()
+
+    return redirect('producto_crud')
+
     

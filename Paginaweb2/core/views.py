@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from core.models import Producto, Categoria, Cliente, Contacto
+from core.models import Producto, Categoria, Cliente, Contacto, Proveedor
 from core.Carrito import Carrito
 
 # Create your views here.
@@ -193,3 +193,45 @@ def eliminarcontacto(request, nombre):
     contacto.delete()
 
     return redirect('contacto_crud')
+
+## CRUD PROVEEDOR
+def proveedor_crud(request):
+    proveedor = Proveedor.objects.all()
+    return render(request, 'core/ProvCrud.html', {"proveedor": proveedor})
+def registrarproveedor(request):
+    rut = request.POST['txtRut']
+    nombre = request.POST['txtNombre']
+    apellidos = request.POST['txtApellidos']
+    telefono = request.POST['txtFono']
+    correo = request.POST['txtCorreo']
+
+
+    proveedor = Proveedor.objects.create(
+        rut=rut, nombre=nombre, apellidos=apellidos, telefono=telefono,correo=correo  
+    )
+
+    return redirect('proveedor_crud')
+def editarproveedor(request, rut):
+    proveedor = Proveedor.objects.get(rut=rut)      
+    return render(request, "core/ProvEdit.html",{"proveedor":proveedor})
+def editarproveedor2(request, rut):
+    rut_nuevo = request.POST['txtRut']
+    nombre = request.POST['txtNombre']
+    apellidos = request.POST['txtApellidos']
+    telefono = request.POST['txtFono']
+    correo = request.POST['txtCorreo']
+
+    proveedor = Proveedor.objects.get(rut=rut)
+    proveedor.rut = rut_nuevo
+    proveedor.nombre = nombre
+    proveedor.apellidos = apellidos
+    proveedor.telefono = telefono
+    proveedor.correo = correo
+    proveedor.save()  
+
+    return redirect('proveedor_crud')
+def eliminarproveedor(request, rut):
+    proveedor = Proveedor.objects.get(rut=rut)
+    proveedor.delete()
+
+    return redirect('proveedor_crud')

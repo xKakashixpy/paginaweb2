@@ -1,0 +1,34 @@
+{% extends "core/base.html" %}
+{% load humanize %}
+{% block body %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2> Editar Proveedor</h2>
+        <div class="card">
+            <div class="card-body">
+                <form method="POST" action="{% url 'editarproveedor2' rut=proveedor.rut %}">{% csrf_token %}
+                    <div class="form-group mb-3">
+                        <input type="text" id="txtRut" name="txtRut" value="{{proveedor.rut}}" class="form-control" placeholder="Rut" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="text" id="txtNombre" name="txtNombre" value="{{proveedor.nombre}}" class="form-control" placeholder="Nombre" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="text" id="txtApellidos" name="txtApellidos" value="{{proveedor.apellidos}}" class="form-control" placeholder="Apellidos" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="text" id="txtFono" name="txtFono" value="{{proveedor.telefono}}" class="form-control" placeholder="Telefono" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="text" id="txtCorreo" name="txtCorreo" value="{{proveedor.correo}}" class="form-control" placeholder="Correo" required>
+                    </div>                                                     
+                    <div class="form-group d-grid gap-2 mb-3">
+                        <button type="submit" class="btn btn-success text-white">Guardar Cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>  
+    </div>
+</div>
+
+{% endblock %}

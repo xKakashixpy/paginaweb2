@@ -1,6 +1,12 @@
 from django.shortcuts import render, redirect
 from core.models import Producto, Categoria, Cliente, Contacto, Proveedor
 from core.Carrito import Carrito
+from .forms import CustomUserCreationForm
+from django.contrib.auth import authenticate, login 
+from django.contrib import messages
+
+
+
 
 # Create your views here.
 
@@ -235,3 +241,23 @@ def eliminarproveedor(request, rut):
     proveedor.delete()
 
     return redirect('proveedor_crud')
+
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
+
+def registro(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            messages.success(request, "¡Te has registrado exitosamente!")
+            return redirect('home')
+    else:
+        form = CustomUserCreationForm()
+
+    return render(request, 'registration/registro.html', {'form': form})
+

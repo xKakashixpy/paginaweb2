@@ -1,8 +1,5 @@
 from django import forms
-from .models import Producto
+from django.contrib.auth.forms import UserCreationForm
 
-
-class ProductFOrm(forms.ModelsForm):
-    class Meta:
-        model:Producto
-        fields='__all__'
+class CustomUserCreationForm(UserCreationForm):
+    pass

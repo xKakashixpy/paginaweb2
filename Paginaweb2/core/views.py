@@ -4,6 +4,7 @@ from core.Carrito import Carrito
 from .forms import CustomUserCreationForm
 from django.contrib.auth import authenticate, login 
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -52,6 +53,7 @@ def carrito(request):
 
 
 ## CRUD  PRODUCTO
+@login_required
 def producto_crud(request):
     productos = Producto.objects.all()
     categorias = Categoria.objects.all()
@@ -96,6 +98,7 @@ def eliminarproducto(request, codigo):
     return redirect('producto_crud')
 
 ## CRUD  CATEGORIA
+@login_required
 def categoria_crud(request):
     categoria = Categoria.objects.all()
     categorias = Categoria.objects.all()
@@ -123,6 +126,7 @@ def eliminarcategoria(request, nombre):
     return redirect('categoria_crud')
 
 ## CRUD CLIENTES
+@login_required
 def cliente_crud(request):
     clientes = Cliente.objects.all()
     return render(request, 'core/ClieCrud.html', {"clientes": clientes})
@@ -165,6 +169,7 @@ def eliminarcliente(request, rut):
     return redirect('cliente_crud')
 
 ## CURD CONTACTO
+@login_required
 def contacto_crud(request):
     contacto = Contacto.objects.all()
     return render(request, 'core/ContacCrud.html', {"contacto": contacto})
@@ -201,6 +206,7 @@ def eliminarcontacto(request, nombre):
     return redirect('contacto_crud')
 
 ## CRUD PROVEEDOR
+@login_required
 def proveedor_crud(request):
     proveedor = Proveedor.objects.all()
     return render(request, 'core/ProvCrud.html', {"proveedor": proveedor})

@@ -2,6 +2,8 @@
 {% load humanize %}
 {% block body %}
 
+    
+
     <div class="container altura">
 
         <div class="row">
@@ -12,9 +14,9 @@
                         <hr>
                         <form action="" method="post">
                             {% csrf_token %}
-                            {{form}}
+                            {{ form }}
                             <a href="{% url 'home' %}">Volver al Inicio</a>
-                            ">Volver al Incio</a>
+                            
                             <input type="submit" value="Logeate Papi!" class="btn btn-success float-right">
                         </form>
                 </div>

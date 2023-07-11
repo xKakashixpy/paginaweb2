@@ -40,11 +40,20 @@
                     <li class="nav-item">
                       <a class="nav-link" href="{% url 'noticias' %}">Noticias</a>
                     </li>
-                    </ul>
-                    </ul>
+                    {% if user.is_authenticated %}
+                      <li class="nav-item">
+                          <a class="nav-link" href="{% url 'logout' %}">Cerar Sesion</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="#">  @{{ user.username }}</a>
+                      </li>
+                      {% else %}
+                      <a class="nav-link" href="{% url 'login' %}">Iniciar Sesion</a>
+
+                      {% endif %}
+                        </div>
+                    </div> <!-- cierre del container barra superior-->
                 </div>
-            </div> <!-- cierre del container barra superior-->
-        </div>
         </nav>
        
         <!-- Carrusel de Imagines -->

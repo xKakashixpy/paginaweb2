@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .views import home, tienda, misionyvision, servicios, noticias, agregar_producto, eliminar_producto, restar_producto, limpiar_carrito, producto_crud, registrarproducto, eliminarproducto,editarproducto, editarproducto2,categoria_crud, registrarcategoria,editarcategoria,editarcategoria2,eliminarcategoria, cliente_crud, registrarcliente, editarcliente, editarcliente2,eliminarcliente
+from .views import home, tienda, misionyvision, servicios, noticias, agregar_producto, eliminar_producto, restar_producto, limpiar_carrito, producto_crud, registrarproducto, eliminarproducto,editarproducto, editarproducto2,categoria_crud, registrarcategoria,editarcategoria,editarcategoria2,eliminarcategoria, cliente_crud, registrarcliente, editarcliente, editarcliente2,eliminarcliente, contacto_crud,editarcontacto, editarcontacto2,eliminarcontacto,registrarcontacto
 
 urlpatterns = [
     path('', home, name="home"),
@@ -27,4 +27,9 @@ urlpatterns = [
     path('editarcliente/<str:rut>/',editarcliente, name='editarcliente'),
     path('editarcliente2/<str:rut>/', editarcliente2,name="editarcliente2"),
     path('eliminarcliente/<str:rut>/', eliminarcliente, name="eliminarcliente" ),
+    path('ContacCrud/', contacto_crud, name="contacto_crud"),
+    path('registrarcontacto/', registrarcontacto, name="registrarcontacto"),
+    path('editarcontacto/<str:nombre>/',editarcontacto, name='editarcontacto'),
+    path('editarcontacto2/<str:nombre>/', editarcontacto2,name="editarcontacto2"),
+    path('eliminarcontacto/<str:nombre>/', eliminarcontacto, name="eliminarcontacto" ),    
 ]

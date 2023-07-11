@@ -1,0 +1,31 @@
+{% extends "core/base.html" %}
+{% load humanize %}
+{% block body %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2> Editar Cliente</h2>
+        <div class="card">
+            <div class="card-body">
+                <form method="POST" action="{% url 'editarcontacto2' nombre=contacto.nombre %}">{% csrf_token %}
+                   
+                    <div class="form-group mb-3">
+                        <input type="text" id="txtNombre" name="txtNombre" value="{{contacto.nombre}}" class="form-control" placeholder="Nombre" required>
+                    </div>
+                    
+                    <div class="form-group mb-3">
+                        <input type="text" id="txtCorreo" name="txtCorreo" value="{{contacto.correo}}" class="form-control" placeholder="Correo" required>
+                    </div> 
+                    
+                    <div class="form-group mb-3">
+                        <input type="text" id="txtMensaje" name="txtMensaje" value="{{contacto.mensaje}}" class="form-control" placeholder="Correo" required>
+                    </div> 
+                    <div class="form-group d-grid gap-2 mb-3">
+                        <button type="submit" class="btn btn-success text-white">Guardar Cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>  
+    </div>
+</div>
+
+{% endblock %}

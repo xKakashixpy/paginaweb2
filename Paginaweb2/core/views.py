@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from core.models import Producto, Categoria, Cliente
+from core.models import Producto, Categoria, Cliente, Contacto
 from core.Carrito import Carrito
 
 # Create your views here.
@@ -158,3 +158,38 @@ def eliminarcliente(request, rut):
 
     return redirect('cliente_crud')
 
+## CURD CONTACTO
+def contacto_crud(request):
+    contacto = Contacto.objects.all()
+    return render(request, 'core/ContacCrud.html', {"contacto": contacto})
+def registrarcontacto(request):    
+    nombre = request.POST['txtNombre']  
+    correo = request.POST['txtCorreo']
+    mensaje= request.POST['txtMensaje']
+
+
+    contacto = Contacto.objects.create(
+        nombre=nombre, correo=correo, mensaje=mensaje  
+    )
+
+    return redirect('contacto_crud')
+def editarcontacto(request, nombre):
+    contacto = Contacto.objects.get(nombre=nombre)      
+    return render(request, "core/ContacEdit.html",{"contacto":contacto})
+def editarcontacto2(request, nombre):    
+    nuevo_nombre = request.POST['txtNombre']  
+    correo = request.POST['txtCorreo']
+    mensaje= request.POST['txtMensaje']
+
+    contacto = Contacto.objects.get(nombre=nombre)    
+    contacto.nombre = nuevo_nombre   
+    contacto.correo = correo
+    contacto.mensaje=mensaje
+    contacto.save()  
+
+    return redirect('contacto_crud')
+def eliminarcontacto(request, nombre):
+    contacto = Contacto.objects.get(nombre=nombre)
+    contacto.delete()
+
+    return redirect('contacto_crud')

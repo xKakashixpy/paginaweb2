@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .views import home, tienda, misionyvision, servicios, noticias, agregar_producto, eliminar_producto, restar_producto, limpiar_carrito, producto_crud, registrarproducto, eliminarproducto,editarproducto, editarproducto2,categoria_crud, registrarcategoria,editarcategoria,editarcategoria2,eliminarcategoria
+from .views import home, tienda, misionyvision, servicios, noticias, agregar_producto, eliminar_producto, restar_producto, limpiar_carrito, producto_crud, registrarproducto, eliminarproducto,editarproducto, editarproducto2,categoria_crud, registrarcategoria,editarcategoria,editarcategoria2,eliminarcategoria, cliente_crud, registrarcliente, editarcliente, editarcliente2,eliminarcliente
 
 urlpatterns = [
     path('', home, name="home"),
@@ -22,4 +22,9 @@ urlpatterns = [
     path('editarcategoria/<str:nombre>/', editarcategoria, name='editarcategoria'),
     path('editarcategoria2/<str:nombre>/', editarcategoria2,name="editarcategoria2"),
     path('eliminarcategoria/<str:nombre>/', eliminarcategoria, name="eliminarcategoria" ),
+    path('ClieCrud/', cliente_crud, name="cliente_crud"),
+    path('registrarcliente/', registrarcliente, name="registrarcliente"),
+    path('editarcliente/<str:rut>/',editarcliente, name='editarcliente'),
+    path('editarcliente2/<str:rut>/', editarcliente2,name="editarcliente2"),
+    path('eliminarcliente/<str:rut>/', eliminarcliente, name="eliminarcliente" ),
 ]

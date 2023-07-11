@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from core.models import Producto, Categoria
+from core.models import Producto, Categoria, Cliente
 from core.Carrito import Carrito
 
 # Create your views here.
@@ -37,13 +37,10 @@ def limpiar_carrito(request):
 
 def misionyvision(request):
     return render(request, 'core/misionyvision.html')
-
 def servicios(request):
     return render(request, 'core/servicios.html')
-
 def noticias(request):
     return render(request, 'core/noticias.html')
-
 def carrito(request):
     return render(request, 'core/carrito.html')
 
@@ -53,7 +50,6 @@ def producto_crud(request):
     productos = Producto.objects.all()
     categorias = Categoria.objects.all()
     return render(request, 'core/ProdCrud.html', {"productos": productos, "categorias": categorias})
-
 def registrarproducto(request):
     codigo = request.POST['txtCodigo']
     nombre = request.POST['txtNombre']
@@ -67,12 +63,10 @@ def registrarproducto(request):
         codigo=codigo, nombre=nombre, precio=precio, descripcion=descripcion, categoria=categoria
     )
     return redirect('producto_crud')
-
 def editarproducto(request, codigo):
     producto = Producto.objects.get(codigo=codigo)
     categorias = Categoria.objects.all()  
     return render(request, "core/ProdEdit.html", {"producto": producto, "categorias": categorias})
-
 def editarproducto2(request, codigo):
     nombre = request.POST['txtNombre']
     precio = request.POST['numPrecio']
@@ -89,23 +83,17 @@ def editarproducto2(request, codigo):
     producto.save()
 
     return redirect('producto_crud')
-
-
-
 def eliminarproducto(request, codigo):
     producto = Producto.objects.get(codigo=codigo)
     producto.delete()
 
     return redirect('producto_crud')
 
-## CRUD  CATEGORIA    
-
-
+## CRUD  CATEGORIA
 def categoria_crud(request):
     categoria = Categoria.objects.all()
     categorias = Categoria.objects.all()
     return render(request, 'core/CatCrud.html', {"categorias": categorias, "categorias": categorias})
-
 def registrarcategoria(request):
     nombre = request.POST['txtNombre']   
 
@@ -113,23 +101,59 @@ def registrarcategoria(request):
         nombre=nombre,  
     )
     return redirect('categoria_crud')
-
 def editarcategoria(request, nombre):
     categoria = Categoria.objects.get(nombre=nombre)      
     return render(request, "core/CatEdit.html", { "categoria": categoria})
-
 def editarcategoria2(request, nombre):
     nuevo_nombre = request.POST['txtNombre']
     categoria = Categoria.objects.get(nombre=nombre)
     categoria.nombre = nuevo_nombre
     categoria.save()
     return redirect('categoria_crud')
-
-
-
-
 def eliminarcategoria(request, nombre):
     categoria = Categoria.objects.get(nombre=nombre)
     categoria.delete()
 
     return redirect('categoria_crud')
+
+## CRUD CLIENTES
+def cliente_crud(request):
+    clientes = Cliente.objects.all()
+    return render(request, 'core/ClieCrud.html', {"clientes": clientes})
+def registrarcliente(request):
+    rut = request.POST['txtRut']
+    nombre = request.POST['txtNombre']
+    apellidos = request.POST['txtApellidos']
+    telefono = request.POST['txtFono']
+    correo = request.POST['txtCorre']
+
+
+    cliente = Cliente.objects.create(
+        rut=rut, nombre=nombre, apellidos=apellidos, telefono=telefono,correo=correo  
+    )
+
+    return redirect('cliente_crud')
+def editarcliente(request, rut):
+    cliente = Cliente.objects.get(rut=rut)      
+    return render(request, "core/ClieEdit.html",{"cliente":cliente})
+def editarcliente2(request, rut):
+    rut = request.POST['txtRut']
+    nombre = request.POST['txtNombre']
+    apellidos = request.POST['txtApellidos']
+    telefono = request.POST['txtFono']
+    correo = request.POST['txtCorre']
+
+    cliente = Cliente.objects.get(rut=rut)
+    cliente.rut = rut
+    cliente.nombre = nombre
+    cliente.apellidos = apellidos
+    cliente.telefono = telefono
+    cliente.correo = correo
+    cliente.save()  
+
+    return redirect('cliente_crud')
+def eliminarcliente(request, rut):
+    cliente = Cliente.objects.get(rut=rut)
+    cliente.delete()
+
+    return redirect('cliente_crud')

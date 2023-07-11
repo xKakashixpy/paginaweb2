@@ -1,0 +1,67 @@
+{% extends "core/base.html" %}
+{% load humanize %}
+{% block body %}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <h2> Administracion de Clientes</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/registrarcliente/" method="POST">{% csrf_token %}
+                    <div class="form-group mb-3">
+                        <input type="text" id="txtRut" name="txtRut" class="form-control" placeholder="Rut" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="text" id="txtApellidos" name="txtApellidos" class="form-control" placeholder="Apellidos" >
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="text" id="txtFono" name="txtFono" class="form-control" placeholder="Telefono" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="text" id="txtCorreo" name="txtCorre" class="form-control" placeholder="Correo" required>
+                    </div>                                      
+                    <div class="form-group d-grid gap-2 mb-3">
+                        <button type="submit" class="btn btn-success text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>    
+    </div>
+   
+    <div class="col-sm12 col-md-6 col-lg-8 col-xl-8">
+        <h1>Listado de Productos</h1>
+        <div class="table table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Rut</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>                        
+                        <th>Telefono</th>
+                        <th>Correo</th>
+                        <th colspan="2">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>                    
+                        {% for c in clientes %}
+                    <tr>
+                        <td>{{ c.rut }}</td>
+                        <td>{{ c.nombre }}</td>
+                        <td>{{ c.apellidos }}</td>                     
+                        <td>{{ c.telefono }}</td> 
+                        <td>{{ c.correo }}</td> 
+                        <td><a href="{% url 'editarcliente' c.rut %}" class="btn btn-info">Editar</a> </td>
+                        <td><a href="{% url 'eliminarcliente' c.rut %}" class="btn btn-dark">Eliminar</a></td>
+
+                    </tr>                   
+                        {% endfor %}                    
+                </tbody>
+            </table>
+        </div>            
+    </div>
+</div>
+
+
+{% endblock %}

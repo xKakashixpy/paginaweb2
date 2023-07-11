@@ -125,7 +125,49 @@ def registrarcliente(request):
     nombre = request.POST['txtNombre']
     apellidos = request.POST['txtApellidos']
     telefono = request.POST['txtFono']
+    correo = request.POST['txtRut']
+
+
+    cliente = Cliente.objects.create(
+        rut=rut, nombre=nombre, apellidos=apellidos, telefono=telefono,correo=correo  
+    )
+
+    return redirect('cliente_crud')
+def editarcliente(request, rut):
+    cliente = Cliente.objects.get(rut=rut)      
+    return render(request, "core/ClieEdit.html",{"cliente":cliente})
+def editarcliente2(request, rut):
+    rut = request.POST['txtRut']
+    nombre = request.POST['txtNombre']
+    apellidos = request.POST['txtApellidos']
+    telefono = request.POST['txtFono']
     correo = request.POST['txtCorre']
+
+    cliente = Cliente.objects.get(rut=rut)
+    cliente.rut = rut
+    cliente.nombre = nombre
+    cliente.apellidos = apellidos
+    cliente.telefono = telefono
+    cliente.correo = correo
+    cliente.save()  
+
+    return redirect('cliente_crud')
+def eliminarcliente(request, rut):
+    cliente = Cliente.objects.get(rut=rut)
+    cliente.delete()
+
+    return redirect('cliente_crud')
+
+## CRUD CONTACTO
+def cliente_crud(request):
+    clientes = Cliente.objects.all()
+    return render(request, 'core/ClieCrud.html', {"clientes": clientes})
+def registrarcliente(request):
+    rut = request.POST['txtRut']
+    nombre = request.POST['txtNombre']
+    apellidos = request.POST['txtApellidos']
+    telefono = request.POST['txtFono']
+    correo = request.POST['txtRut']
 
 
     cliente = Cliente.objects.create(
